@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="display-3">Leagues</h1>
+        <p class="lead">On this page you can find information about leagues.</p>
+        <hr class="my-4">
+
+    {% for object in objects %}
+        <div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col col-md-3">
+     <h2>{{ object.name }}</h2>
+    </div>
+    <div class="col-md-6">
+      {{ object.description }}
+    </div>
+    <div class="col col-md-3">
+      <a href="/footballscore/edit_league/{{ object.id }}/"><button type="button" class="btn btn-primary">Edit</button></a>
+          <a href="/footballscore/delete_league/{{ object.id }}/"><button type="button" class="btn btn-secondary" data-dismiss="modal">Delete</button></a>
+    </div>
+  </div>
+    {% endfor %}
+
+
+    </div>
+
+{% endblock %}
