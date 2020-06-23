@@ -23,5 +23,19 @@ class League(models.Model):
 
 class Season(models.Model):
     season = models.CharField(max_length=64)
+    league = models.ManyToManyField(League)
 
+class Team(models.Model):
+    name = models.CharField(max_length=256)
+    coach = models.CharField(max_length=256)
+    arms = models.ImageField(upload_to ='uploads/')
+    address = models.CharField(max_length=256)
+    season = models.ManyToManyField(Season)
+    points = models.IntegerField(default=0)
 
+class Match(models.Model):
+    team_home = models.ForeignKey(Team, related_name='match_home', on_delete=models.CASCADE)
+    team_away = models.ForeignKey(Team, related_name='match_away', on_delete=models.CASCADE)
+    date = models.DateField()
+    score_home = models.IntegerField(default=None)
+    score_away = models.IntegerField(default=None)
