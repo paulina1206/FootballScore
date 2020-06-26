@@ -6,16 +6,19 @@ from footballscore_app.forms import LeagueForm, TeamForm, MatchForm
 from footballscore_app.models import Match, League, Team
 from datetime import date
 
+
 # Create your views here.
 class BaseView(View):
     def get(self, request):
         matches = Match.objects.filter(date=date.today())
         return render(request, "index.html", {'matches': matches})
 
+
 class LeagueView(View):
     def get(self, request):
         leagues = League.objects.all()
         return render(request, "league.html", {'objects': leagues})
+
 
 class AddLeagueView(CreateView):
     form_class = LeagueForm
@@ -26,6 +29,7 @@ class AddLeagueView(CreateView):
         context = super().get_context_data(**kwargs)
         context.update({'objects': League.objects.all()})
         return context
+
 
 class EditLeagueView(UpdateView):
     model = League
@@ -38,20 +42,24 @@ class EditLeagueView(UpdateView):
         context.update({'objects': League.objects.all()})
         return context
 
+
 class DeleteLeagueView(DeleteView):
     model = League
     template_name = 'delete_league.html'
     success_url = reverse_lazy('league')
+
 
 class TeamView(View):
     def get(self, request):
         teams = Team.objects.all()
         return render(request, "team.html", {'objects': teams})
 
+
 class AddTeamView(View):
     def get(self, request):
         form = TeamForm
         return render(request, "add_team.html", {'form': form})
+
     def post(self, request):
         form = TeamForm(request.POST, request.FILES)
         if form.is_valid():
@@ -59,11 +67,13 @@ class AddTeamView(View):
             return redirect('teams')
         return render(request, "add_team.html", {'form': form})
 
+
 class EditTeamView(View):
     def get(self, request, id):
         team = Team.objects.get(pk=id)
         form = TeamForm(instance=team)
         return render(request, "edit_team.html", {'form': form})
+
     def post(self, request, id):
         team = Team.objects.get(pk=id)
         form = TeamForm(request.POST, request.FILES, instance=team)
@@ -72,15 +82,18 @@ class EditTeamView(View):
             return redirect(f'/footballscore/teams/')
         return render(request, "edit_team.html", {'form': form})
 
+
 class DeleteTeamView(DeleteView):
     model = Team
     template_name = 'delete_team.html'
     success_url = reverse_lazy('teams')
 
+
 class AddMatchView(View):
     def get(self, request):
         form = MatchForm
         return render(request, "add_match.html", {'form': form})
+
     def post(self, request):
         form = MatchForm(request.POST)
         if form.is_valid():
