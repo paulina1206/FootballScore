@@ -8,15 +8,17 @@
         <p>League</p>
 
     <table class="table table-hover">
+
   <thead>
     <tr>
       <th scope="col">Team home</th>
       <th scope="col">Team away</th>
     </tr>
   </thead>
+{% for match in matches %}
   <tbody>
     <tr class="table-success">
-        {% for match in matches %}
+
       <td>{{ match.team_home }}</td>
       <td>{{ match.team_away }}</td>
     {% endfor %}

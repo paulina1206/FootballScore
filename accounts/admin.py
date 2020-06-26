@@ -1,5 +1,5 @@
 from django.contrib import admin
-from footballscore_app.models import Country,Match,Team,League,Season
+from footballscore_app.models import Country,Match,Team,League
 # Register your models here.
 
 class CountryAdmin(admin.ModelAdmin):
@@ -14,4 +14,3 @@ admin.site.register(Match, MatchAdmin)
 
 admin.site.register(Team)
 admin.site.register(League)
-admin.site.register(Season)

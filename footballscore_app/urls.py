@@ -28,6 +28,7 @@ urlpatterns = [
     path('add_team/', views.AddTeamView.as_view(), name="add_team"),
     path('edit_team/<int:id>/', views.EditTeamView.as_view(), name="edit_team"),
     path('delete_team/<int:pk>/', views.DeleteTeamView.as_view(), name="delete_team"),
+    path('add_match/', views.AddMatchView.as_view(), name="add_match"),
 
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 
