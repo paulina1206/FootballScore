@@ -21,11 +21,14 @@ class League(models.Model):
     hierarchy = models.IntegerField(unique=True, choices=hierarchy_league)
     country = models.ForeignKey(Country, on_delete=models.CASCADE)
 
+    class Meta:
+        unique_together = ('hierarchy', 'country',)
+
     def __str__(self):
         return f'{self.name}, {self.country}'
 
     def get_detail_url(self):
-        return f"/league/{self.id}"
+        return f"footballscore/league/{self.id}"
 
 class Season(models.Model):
     season = models.CharField(max_length=64)

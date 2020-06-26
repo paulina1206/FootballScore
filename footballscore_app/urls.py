@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.urls import path
 from footballscore_app import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('', views.BaseView.as_view(), name='index'),
@@ -22,6 +24,11 @@ urlpatterns = [
     path('add_league/', views.AddLeagueView.as_view(), name="add_league"),
     path('edit_league/<int:pk>/', views.EditLeagueView.as_view(), name="edit_league"),
     path('delete_league/<int:pk>/', views.DeleteLeagueView.as_view(), name="delete_league"),
+    path('teams/', views.TeamView.as_view(), name="teams"),
+    path('add_team/', views.AddTeamView.as_view(), name="add_team"),
+    path('edit_team/<int:id>/', views.EditTeamView.as_view(), name="edit_team"),
+    path('delete_team/<int:pk>/', views.DeleteTeamView.as_view(), name="delete_team"),
 
-]
+] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
+
 

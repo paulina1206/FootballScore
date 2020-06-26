@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="display-3">Teams</h1>
+        <p class="lead">On this page you can find information about teams.</p>
+        <hr class="my-4">
+
+        <div class="container">
+            <div class="row justify-content-md-center">
+                <div class="col col-md-3">
+                    <h4>Arms</h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>Team name</h4>
+                </div>
+                <div class="col-md-3">
+                    <h4>Team coach</h4>
+                </div>
+                <div class="col col-md-3">
+                </div>
+            </div>
+            <hr class="my-4">
+        </div>
+
+    {% load static %}
+        {% for object in objects %}
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-md-3">
+
+                        <img width="100" height="120" src="{{ MEDIA_URL }}{{ object.arms.url }}">
+
+                    </div>
+                    <div class="col-md-3">
+                        {{ object.name }}
+                    </div>
+                    <div class="col-md-3">
+                        {{ object.coach }}
+                    </div>
+                    <div class="col col-md-3">
+                        <a href="/footballscore/edit_team/{{ object.id }}/">
+                            <button type="button" class="btn btn-primary">Edit</button>
+                        </a>
+                        <a href="/footballscore/delete_team/{{ object.id }}/">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Delete</button>
+                        </a>
+                    </div>
+                </div>
+                <hr class="my-4">
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}

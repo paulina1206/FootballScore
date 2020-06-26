@@ -5,6 +5,17 @@ class LeagueForm(forms.ModelForm):
     class Meta:
         model = League
         fields = "__all__"
+        widgets = {
+            'description': forms.Textarea(attrs={'class':'form-control'})
+        }
+        help_texts = {
+            'hierarchy': ('(Level of league in country)'),
+        }
+        error_messages = {
+            'hierarchy': {
+                'unique': ("It can be one league in country at this level"),
+            },
+        }
 
 
 class MatchForm(forms.ModelForm):
