@@ -57,6 +57,9 @@ class TeamSeason(models.Model):
     team = models.ForeignKey(Team, on_delete=models.CASCADE)
     season = models.ForeignKey(Season, on_delete=models.CASCADE)
     points = models.IntegerField(default=0)
+    wins = models.IntegerField(default=0)
+    draws = models.IntegerField(default=0)
+    losses = models.IntegerField(default=0)
 
     def __str__(self):
         return f'{self.team}, {self.season}'
@@ -80,14 +83,22 @@ class Match(models.Model):
         if self.score_away is not None:
             if self.score_away > self.score_home:
                 self.team_away.points += 3
+                self.team_away.wins += 1
                 self.team_away.save()
+                self.team_home.losses += 1
+                self.team_home.save()
             elif self.score_home > self.score_away:
                 self.team_home.points += 3
+                self.team_home.wins += 1
                 self.team_home.save()
+                self.team_away.losses += 1
+                self.team_away.save()
             else:
                 self.team_away.points += 1
+                self.team_away.draws += 1
                 self.team_away.save()
                 self.team_home.points += 1
+                self.team_away.draws += 1
                 self.team_home.save()
 
     def __str__(self):
