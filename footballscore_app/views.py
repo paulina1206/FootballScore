@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
@@ -16,13 +17,15 @@ class BaseView(View):
         return render(request, "index.html", {'matches': matches, 'leagues': leagues})
 
 
+
 class LeagueView(View):
     def get(self, request):
         leagues = League.objects.all()
         return render(request, "league.html", {'objects': leagues})
 
 
-class AddLeagueView(CreateView):
+class AddLeagueView(PermissionRequiredMixin, CreateView):
+    permission_required = 'footballscore_app.add_league'
     form_class = LeagueForm
     template_name = 'add_league.html'
     success_url = reverse_lazy('index')
@@ -72,7 +75,8 @@ class TeamView(View):
         return render(request, "team.html", {'objects': teams})
 
 
-class AddTeamView(View):
+class AddTeamView(PermissionRequiredMixin, View):
+    permission_required = 'footballscore_app.add_team'
     def get(self, request):
         form = TeamForm
         return render(request, "add_team.html", {'form': form})
@@ -120,7 +124,8 @@ class DetailTeamView(View):
         return render(request, "detail_team.html", {'team': team, 'matches': matches, 'seasons':seasons})
 
 
-class AddMatchView(View):
+class AddMatchView(PermissionRequiredMixin, View):
+    permission_required = 'footballscore_app.add_match'
     def get(self, request):
         form = MatchForm
         return render(request, "add_match.html", {'form': form})

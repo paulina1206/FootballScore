@@ -1,9 +1,11 @@
 
 {% extends 'base.html' %}
 {% block content %}
+    <div class="jumbotron">
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Stwórz</button>
+        <button type="submit">Signup</button>
     </form>
+    </div>
 {% endblock %}

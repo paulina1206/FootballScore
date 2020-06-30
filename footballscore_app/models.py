@@ -30,7 +30,7 @@ class League(models.Model):
         return f'{self.name}, {self.country}'
 
     def get_detail_url(self):
-        return f"footballscore/league/{self.id}"
+        return f"/footballscore/detail_league/{self.id}"
 
 
 class Season(models.Model):
