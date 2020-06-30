@@ -98,7 +98,7 @@ class Match(models.Model):
                 self.team_away.draws += 1
                 self.team_away.save()
                 self.team_home.points += 1
-                self.team_away.draws += 1
+                self.team_home.draws += 1
                 self.team_home.save()
 
     def __str__(self):
