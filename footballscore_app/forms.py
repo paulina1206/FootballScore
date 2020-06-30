@@ -38,8 +38,8 @@ class TeamSeasonForm(forms.ModelForm):
 class MatchForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
-        team_home = cleaned_data['team_home'].season
-        team_away = cleaned_data['team_away'].season
+        team_home = cleaned_data['team_home'].season.season
+        team_away = cleaned_data['team_away'].season.season
         if team_home and team_away:
             if team_home != team_away:
                 raise forms.ValidationError("Teams don't play at the same league.")

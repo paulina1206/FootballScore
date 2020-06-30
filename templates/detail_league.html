@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="display-3"><img width="95" height="50"
+                                   src="{{ MEDIA_URL }}{{ league.country.flag.url }}"> {{ league.name }}</h1>
+        <p class="lead">{{ league.description }}</p>
+        <hr class="my-4">
+
+        {% for season in league.season_set.all %}
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">{{ season }}</th>
+                </tr>
+                </thead>
+                {% for team in teams %}
+                    {% for t in team.teamseason_set.all %}
+                        {% if t.season.season == season.season %}
+                            <tbody style="width:100%">
+                            <tr class="table-success">
+                                <td style="width:40%; text-align: right">{{ t }}</td>
+                                <td style="width:8%; text-align: right">{{ seson.team.points }}</td>
+                                <td style="width:4%; text-align: center"></td>
+                                <td style="width:8%; text-align: left">{{ match.score_away |default_if_none:" - " }}</td>
+                                <td style="width:40%;text-align: left">{{ match.team_away.team.name }}</td>
+                            </tbody>
+                        {% endif %}
+                    {% endfor %}
+                {% endfor %}
+            </table>
+        {% endfor %}
+    </div>
+
+{% endblock %}

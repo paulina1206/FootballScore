@@ -11,7 +11,8 @@ from datetime import date
 class BaseView(View):
     def get(self, request):
         matches = Match.objects.filter(date=date.today())
-        return render(request, "index.html", {'matches': matches})
+        leagues = League.objects.all()
+        return render(request, "index.html", {'matches': matches, 'leagues': leagues})
 
 
 class LeagueView(View):
@@ -48,6 +49,18 @@ class DeleteLeagueView(DeleteView):
     template_name = 'delete_league.html'
     success_url = reverse_lazy('league')
 
+class DetailLeagueView(View):
+    def get(self, request, id):
+        league = League.objects.get(pk=id)
+        # le = league.season_set.all()
+        teams = Team.objects.filter(played_in_season__league=league)
+        # td = []
+        # for team in teams:
+        #     for t in team.teamseason_set.all():
+        #         for leag in league.season_set.all():
+        #             if t.season.season == leag.season:
+        #                 td.append(team)
+        return render(request, "detail_league.html", {'league': league, 'teams': teams})
 
 class TeamView(View):
     def get(self, request):

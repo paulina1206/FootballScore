@@ -3,32 +3,32 @@
 
     <div class="jumbotron">
         <h1 class="display-3">All games today!</h1>
-        <p class="lead">On this page you can find matches that will take place today and results of matches already played today.</p>
+        <p class="lead">On this page you can find matches that will take place today and results of matches already
+            played today.</p>
         <hr class="my-4">
-        <p>League</p>
 
-    <table class="table table-hover">
-
-  <thead>
-    <tr>
-      <th scope="col">Team home</th>
-      <th scope="col">Team away</th>
-    </tr>
-  </thead>
-{% for match in matches %}
-  <tbody>
-    <tr class="table-success">
-
-      <td>{{ match.team_home.team.name }}</td>
-      <td>{{ match.team_away.team.name }}</td>
-    {% endfor %}
-      </tr>
-
-  </tbody>
-</table>
+        {% for league in leagues %}
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col"><img width="35" height="20"
+                                         src="{{ MEDIA_URL }}{{ league.country.flag.url }}">    {{ league.name }}</th>
+                </tr>
+                </thead>
+                {% for match in matches %}
+                    {% if match.team_home.season.league.name == league.name %}
+                        <tbody style="width:100%">
+                        <tr class="table-success">
+                            <td style="width:40%; text-align: right">{{ match.team_home.team.name }}</td>
+                            <td style="width:8%; text-align: right">{{ match.score_home |default_if_none:" - " }}</td>
+                            <td style="width:4%; text-align: center"> :</td>
+                            <td style="width:8%; text-align: left">{{ match.score_away |default_if_none:" - " }}</td>
+                            <td style="width:40%;text-align: left">{{ match.team_away.team.name }}</td>
+                        </tbody>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        {% endfor %}
     </div>
-
-
-
 
 {% endblock %}

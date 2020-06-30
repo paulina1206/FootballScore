@@ -24,6 +24,7 @@ urlpatterns = [
     path('add_league/', views.AddLeagueView.as_view(), name="add_league"),
     path('edit_league/<int:pk>/', views.EditLeagueView.as_view(), name="edit_league"),
     path('delete_league/<int:pk>/', views.DeleteLeagueView.as_view(), name="delete_league"),
+    path('detail_league/<int:id>/', views.DetailLeagueView.as_view(), name='detail_league'),
     path('teams/', views.TeamView.as_view(), name="teams"),
     path('add_team/', views.AddTeamView.as_view(), name="add_team"),
     path('edit_team/<int:id>/', views.EditTeamView.as_view(), name="edit_team"),
