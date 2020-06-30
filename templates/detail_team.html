@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="display-3"><img width="120" height="130"
+                                   src="{{ MEDIA_URL }}{{ team.arms.url }}"> {{ team.name }}</h1>
+        <p class="lead">Coach: {{ team.coach }}</p>
+        <p class="lead">Address: {{ team.address }}</p>
+        <p class="lead">{{ team.description }}</p>
+        <hr class="my-4">
+        {% for t in seasons %}
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">{{ t.season }} </th>
+                </tr>
+                </thead>
+                {% for match in matches|dictsort:"date"%}
+                    {% if match.team_home.season.season == t.season %}
+                    <tbody style="width:100%">
+                    <tr class="table-success">
+                        <td class="hidden"></td>
+                        <td style="width:20%; text-align: left">{{ match.date }}</td>
+                        <td style="width:30%; text-align: right">{{ match.team_home.team.name }}</td>
+                        <td style="width:8%; text-align: right">{{ match.score_home |default_if_none:" - " }}</td>
+                        <td style="width:4%; text-align: center"> : </td>
+                        <td style="width:8%; text-align: left">{{ match.score_away |default_if_none:" - " }}</td>
+                        <td style="width:30%;text-align: left">{{ match.team_away.team.name }}</td>
+                    </tbody>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        {% endfor %}
+    {% include 'paginator.html' with object=seasons %}
+    </div>
+
+{% endblock %}

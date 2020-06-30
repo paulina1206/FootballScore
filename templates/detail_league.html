@@ -7,7 +7,7 @@
         <p class="lead">{{ league.description }}</p>
         <hr class="my-4">
 
-        {% for season in league.season_set.all %}
+        {% for season in seasons %}
             <h3>{{ season.season }}</h3>
             <table class="table_auto table-hover table">
                 <thead>
@@ -37,6 +37,7 @@
                 {% endfor %}
             </table>
         {% endfor %}
+    {% include 'paginator.html' with object=seasons %}
     </div>
 
 {% endblock %}
