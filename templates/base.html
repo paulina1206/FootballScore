@@ -57,17 +57,16 @@
                 </li>
             {% endif %}
 
-        {% if perms.footballscore_app.add_match %}
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Match</a>
                     <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item waves-effect waves-light" href="{% url 'index' %}">Matches</a>
-                        <a class="dropdown-item waves-effect waves-light" href="{% url 'add_match' %}">Add match</a>
+                        {% if perms.footballscore_app.add_match %}<a class="dropdown-item waves-effect waves-light" href="{% url 'add_match' %}">Add match</a>{% endif %}
 <a class="dropdown-item waves-effect waves-light" href="{% url 'search_match' %}">Search match</a>
                     </div>
                 </li>
-            {% endif %}
+
 
             {% if user.is_authenticated %}
                 <li class="nav-item" ><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>

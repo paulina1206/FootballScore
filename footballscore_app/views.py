@@ -14,7 +14,12 @@ from datetime import date
 class BaseView(View):
     def get(self, request):
         matches = Match.objects.filter(date=date.today())
-        leagues = League.objects.all()
+        leaguess = League.objects.all()
+        leagues = []
+        for league in leaguess:
+            for match in matches:
+                if match.team_home.season.league.name == league.name and league not in leagues:
+                    leagues.append(league)
         return render(request, "index.html", {'matches': matches, 'leagues': leagues})
 
 
@@ -148,8 +153,13 @@ class AddMatchView(PermissionRequiredMixin, View):
 
 class SearchMatchView(View):
     def get(self, request):
-        leagues = League.objects.all()
         matches, search_form = self.search_match(request)
+        leaguess = League.objects.all()
+        leagues = []
+        for league in leaguess:
+            for match in matches:
+                if match.team_home.season.league.name == league.name and league not in leagues:
+                    leagues.append(league)
         return render(request, "search_match.html",
                       {'search_form': search_form, 'matches': matches, 'leagues': leagues})
 
