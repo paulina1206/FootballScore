@@ -21,7 +21,7 @@
                 </tr>
                 </thead>
 
-                {% for match in matches %}
+                {% for match in matches|dictsortreversed:"date" %}
                     {% if match.team_home.season.league.name == league.name %}
                             <tbody style="width:100%">
                             <tr class="table-success">
@@ -29,7 +29,7 @@
                                 <td style="width:15%; text-align: left">{{ match.date }}</td>
                                 <td style="width:25%; text-align: right">{{ match.team_home.team.name }}</td>
                                 <td style="width:8%; text-align: right">{{ match.score_home |default_if_none:" - " }}</td>
-                                <td style="width:4%; text-align: center"> :</td>
+                                <td style="width:4%; text-align: center"> : </td>
                                 <td style="width:8%; text-align: left">{{ match.score_away |default_if_none:" - " }}</td>
                                 <td style="width:25%;text-align: left">{{ match.team_away.team.name }}</td>
                             <td style="width:15%;text-align: right">

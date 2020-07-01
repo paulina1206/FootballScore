@@ -28,6 +28,21 @@ class LeagueView(View):
         leagues = League.objects.all()
         return render(request, "league.html", {'objects': leagues})
 
+class SearchLeagueView(View):
+    def get(self, request):
+        leagues, search_form = self.search_match(request)
+        return render(request, "search_league.html",
+                      {'search_form': search_form, 'objects': leagues})
+
+    def search_match(self, request):
+        search_form = SearchForm(request.GET)
+        search_form.is_valid()
+        name = search_form.cleaned_data.get('query', '')
+        q = Q(name__icontains=name)
+        country = search_form.cleaned_data.get('query', '')
+        q1 = Q(country__name__icontains=country)
+        leagues = League.objects.filter(q | q1)
+        return leagues, search_form
 
 class AddLeagueView(PermissionRequiredMixin, CreateView):
     permission_required = 'footballscore_app.add_league'
@@ -81,6 +96,25 @@ class TeamView(View):
         teams = Team.objects.all()
         return render(request, "team.html", {'objects': teams})
 
+class SearchTeamsView(View):
+    def get(self, request):
+        teams, search_form = self.search_team(request)
+        teams_filtered = []
+        for team in teams:
+            if team not in teams_filtered:
+                teams_filtered.append(team)
+        return render(request, "search_team.html",
+                      {'search_form': search_form, 'objects': teams_filtered})
+
+    def search_team(self, request):
+        search_form = SearchForm(request.GET)
+        search_form.is_valid()
+        name = search_form.cleaned_data.get('query', '')
+        q = Q(name__icontains=name)
+        league = search_form.cleaned_data.get('query', '')
+        q1 = Q(played_in_season__league__name__icontains=league)
+        teams = Team.objects.filter(q | q1)
+        return teams, search_form
 
 class AddTeamView(PermissionRequiredMixin, View):
     permission_required = 'footballscore_app.add_team'

@@ -2,8 +2,15 @@
 {% block content %}
 
     <div class="jumbotron">
-        <h1 class="display-3">Teams</h1>
-        <p class="lead">On this page you can find information about teams.</p>
+        <h1 class="display-3">Search teams</h1>
+        <p class="lead">On this page you can search teams by name of league or team.</p>
+        <hr class="my-4">
+
+        <form>
+            {{ search_form }}
+            <input type="submit" value="Search"><br>
+        </form>
+        <br>
         <hr class="my-4">
 
         <div class="container">
@@ -23,7 +30,7 @@
             <hr class="my-4">
         </div>
 
-    {% load static %}
+        {% load static %}
         {% for object in objects %}
             <div class="container">
                 <div class="row justify-content-md-center">
@@ -43,8 +50,8 @@
                             <button type="button" class="btn btn-primary">Details</button>
                         </a>
                         {% if perms.footballscore_app.change_team %}<a href="/footballscore/edit_team/{{ object.id }}/">
-                            <button type="button" class="btn btn-primary">Edit</button>
-                        </a>{% endif %}
+                            <button type="button" class="btn btn-primary">Edit</button>{% endif %}
+                        </a>
                         {% if perms.footballscore_app.delete_team %}<a href="/footballscore/delete_team/{{ object.id }}/">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Delete</button>{% endif %}
                         </a>

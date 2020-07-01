@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="jumbotron">
+        <h1 class="display-3">Search leagues</h1>
+        <p class="lead">On this page you can search leagues by name of league or country.</p>
+        <hr class="my-4">
+
+        <form>
+            {{ search_form }}
+            <input type="submit" value="Search"><br>
+        </form>
+        <br>
+        <hr class="my-4">
+
+        {% for object in objects %}
+            <div class="container">
+                <div class="row justify-content-md-center">
+                    <div class="col col-md-3">
+                        <h2>{{ object.name }}</h2>
+                    </div>
+                    <div class="col-md-6">
+                        {{ object.description }}
+                    </div>
+                    <div class="col col-md-3">
+                        <a href="/footballscore/detail_league/{{ object.id }}/">
+                            <button type="button" class="btn btn-primary">Detail</button>
+                        </a>
+                        {% if perms.footballscore_app.change_league %}
+                            <a href="/footballscore/edit_league/{{ object.id }}/">
+                                <button type="button" class="btn btn-primary">Edit</button>
+                            </a> {% endif %}
+                        {% if perms.footballscore_app.delete_league %}
+                            <a href="/footballscore/delete_league/{{ object.id }}/">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Delete</button>
+                            </a>{% endif %}
+                    </div>
+                </div>
+                <hr class="my-4">
+            </div>
+        {% endfor %}
+
+
+    </div>
+
+{% endblock %}

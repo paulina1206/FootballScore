@@ -26,14 +26,8 @@ class TeamForm(forms.ModelForm):
         model = Team
         fields = "__all__"
         widgets = {
-            'season': forms.CheckboxSelectMultiple
+            'played_in_season': forms.CheckboxSelectMultiple
         }
-
-class TeamSeasonForm(forms.ModelForm):
-    class Meta:
-        model = Team
-        fields = "__all__"
-
 
 class MatchForm(forms.ModelForm):
     def clean(self):

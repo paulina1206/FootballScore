@@ -23,56 +23,52 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'index' %}">Home <span class="sr-only">(current)</span></a>
 
-                {% if perms.footballscore_app.add_league %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">League</a>
-                        <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item waves-effect waves-light" href="{% url 'league' %}">Leagues</a>
-                            <a class="dropdown-item waves-effect waves-light" href="{% url 'add_league' %}">Add
-                                league</a>
 
-                        </div>
-                    </li>
-                {% else %}
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'league' %}">Leagues</a>
-                    </li>
-                {% endif %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">League</a>
+                <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item waves-effect waves-light" href="{% url 'league' %}">Leagues</a>
+                    <a class="dropdown-item waves-effect waves-light" href="{% url 'search_league' %}">Search league</a>
+                    {% if perms.footballscore_app.add_league %}
+                        <a class="dropdown-item waves-effect waves-light" href="{% url 'add_league' %}">Add
+                            league</a>{% endif %}
+                </div>
+            </li>
 
-            {% if perms.footballscore_app.add_team %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Teams</a>
-                    <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item waves-effect waves-light" href="{% url 'teams' %}">Teams</a>
-                        <a class="dropdown-item waves-effect waves-light" href="{% url 'add_team' %}">Add team</a>
 
-                    </div>
-                </li>
-            {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'teams' %}">Teams</a>
-                </li>
-            {% endif %}
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Teams</a>
+                <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item waves-effect waves-light" href="{% url 'teams' %}">Teams</a>
+                    <a class="dropdown-item waves-effect waves-light" href="{% url 'search_teams' %}">Search team</a>
+                    {% if perms.footballscore_app.add_team %}
+                        <a class="dropdown-item waves-effect waves-light" href="{% url 'add_team' %}">Add
+                            team</a>{% endif %}
+                </div>
+            </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
-                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Match</a>
-                    <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item waves-effect waves-light" href="{% url 'index' %}">Matches</a>
-                        {% if perms.footballscore_app.add_match %}<a class="dropdown-item waves-effect waves-light" href="{% url 'add_match' %}">Add match</a>{% endif %}
-<a class="dropdown-item waves-effect waves-light" href="{% url 'search_match' %}">Search match</a>
-                    </div>
-                </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle waves-effect waves-light" id="navbarDropdownMenuLink"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Match</a>
+                <div class="dropdown-menu dropdown-info" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item waves-effect waves-light" href="{% url 'index' %}">Matches</a>
+                    {% if perms.footballscore_app.add_match %}
+                        <a class="dropdown-item waves-effect waves-light" href="{% url 'add_match' %}">Add
+                            match</a>{% endif %}
+                    <a class="dropdown-item waves-effect waves-light" href="{% url 'search_match' %}">Search
+                        match</a>
+                </div>
+            </li>
 
 
             {% if user.is_authenticated %}
-                <li class="nav-item" ><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">Logout</a></li>
             {% else %}
-                <li class="nav-item" ><a class="nav-link" href="{% url 'login' %}">Login</a></li>
-                <li class="nav-item" ><a class="nav-link" href="{% url 'signup' %}">Signup</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Signup</a></li>
             {% endif %}
 
         </ul>

@@ -21,11 +21,13 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('', views.BaseView.as_view(), name='index'),
     path('league/', views.LeagueView.as_view(), name="league"),
+    path('search_league/', views.SearchLeagueView.as_view(), name="search_league"),
     path('add_league/', views.AddLeagueView.as_view(), name="add_league"),
     path('edit_league/<int:pk>/', views.EditLeagueView.as_view(), name="edit_league"),
     path('delete_league/<int:pk>/', views.DeleteLeagueView.as_view(), name="delete_league"),
     path('detail_league/<int:id>/', views.DetailLeagueView.as_view(), name='detail_league'),
     path('teams/', views.TeamView.as_view(), name="teams"),
+    path('search_teams/', views.SearchTeamsView.as_view(), name="search_teams"),
     path('add_team/', views.AddTeamView.as_view(), name="add_team"),
     path('edit_team/<int:id>/', views.EditTeamView.as_view(), name="edit_team"),
     path('delete_team/<int:pk>/', views.DeleteTeamView.as_view(), name="delete_team"),

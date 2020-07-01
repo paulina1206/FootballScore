@@ -7,12 +7,16 @@
         </tr>
         </thead>
         <tbody>
-        <tr class="table-light">
+        <tr class="table-dark">
             <td class="hidden"></td>
             <td scope="col-6"><a href="{{ object.get_detail_url }}"> {{ object }}</a></td>
             <td scope="col-6" style="text-align: right">
-            <a href="/footballscore/edit_league/{{ object.id }}/" class="btn btn-dark" role="button">Edit</a>
-            <a href="/footballscore/delete_league/{{ object.id }}/" class="btn btn-dark" role="button">Delete</a></td>
+                {% if perms.footballscore_app.change_league %}
+                    <a href="/footballscore/edit_league/{{ object.id }}/" class="btn btn-dark"
+                       role="button">Edit</a>{% endif %}
+                {% if perms.footballscore_app.delete_league %}
+                    <a href="/footballscore/delete_league/{{ object.id }}/" class="btn btn-dark"
+                       role="button">Delete</a></td>{% endif %}
         </tr>
         </tbody>
     </table>

@@ -19,12 +19,12 @@
                         <a href="/footballscore/detail_league/{{ object.id }}/">
                             <button type="button" class="btn btn-primary">Detail</button>
                         </a>
-                        <a href="/footballscore/edit_league/{{ object.id }}/">
+                        {% if perms.footballscore_app.change_league %}<a href="/footballscore/edit_league/{{ object.id }}/">
                             <button type="button" class="btn btn-primary">Edit</button>
-                        </a>
-                        <a href="/footballscore/delete_league/{{ object.id }}/">
+                        </a>{% endif %}
+                        {% if perms.footballscore_app.delete_league %}<a href="/footballscore/delete_league/{{ object.id }}/">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Delete</button>
-                        </a>
+                        </a>{% endif %}
                     </div>
                 </div>
                 <hr class="my-4">
