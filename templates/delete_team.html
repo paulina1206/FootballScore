@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-
+ <div class="jumbotron">
  <h1>Are you sure you want to delete {{ object }} ?</h1>
     <form method="post">
     {% csrf_token %}
     <button type="submit" class="btn btn-primary">YES</button>
     <a href="{% url 'teams' %}" class="btn btn-primary" role="button">NO</a>
     </form>
-
+ </div>
 
 {% endblock %}

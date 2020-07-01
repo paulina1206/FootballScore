@@ -4,13 +4,11 @@
 
     <form method="POST" class="form-group">
         {% csrf_token %}
-        <h3>Edit league:</h3>
+        <h3>Edit match:</h3>
         {{ form.as_p }}
         <p><input class="btn btn-dark btn-lg" type="submit" value="Edit"></p>
     </form>
 
 </div>
-
-    {% include 'object_list.html' with objects_list=objects %}
 
 {% endblock %}

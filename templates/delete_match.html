@@ -5,8 +5,9 @@
     <form method="post">
     {% csrf_token %}
     <button type="submit" class="btn btn-primary">YES</button>
-    <a href="{% url 'league' %}" class="btn btn-primary" role="button">NO</a>
+    <a href="{% url 'search_match' %}" class="btn btn-primary" role="button">NO</a>
     </form>
  </div>
+
 
 {% endblock %}

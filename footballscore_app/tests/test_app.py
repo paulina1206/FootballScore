@@ -1,8 +1,7 @@
 import pytest
 
 @pytest.mark.django_db
-def test_index(client, user):
-    client.login(username = 'paulina', password = 'ad')
+def test_index(client):
     response = client.get('/footballscore/')
     assert response.status_code == 200
 

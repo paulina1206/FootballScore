@@ -1,4 +1,5 @@
 import pytest
+from django.contrib.contenttypes.models import ContentType
 from django.test import Client, override_settings
 from footballscore_app.models import League, Team, Match, Country
 from django.contrib.auth.models import User, Permission
@@ -20,6 +21,11 @@ def user():
     user.user_permissions.add(p)
     p = Permission.objects.get(codename='view_team')
     user.user_permissions.add(p)
+
+    # contenttype = ContentType.objects.get(model='genre')
+    # permissions = Permission.objects.filter(content_type=contenttype)
+    # user.user_permissions.set(permissions)
+
     return user
 
 @pytest.fixture
