@@ -5,8 +5,8 @@ from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DeleteView
-from footballscore_app.forms import LeagueForm, TeamForm, MatchForm, SearchForm
-from footballscore_app.models import Match, League, Team
+from footballscore_app.forms import LeagueForm, TeamForm, MatchForm, SearchForm, SeasonForm
+from footballscore_app.models import Match, League, Team, Season
 from datetime import date
 
 
@@ -221,3 +221,34 @@ class EditMatchView(PermissionRequiredMixin, UpdateView):
     fields = "__all__"
     template_name = 'edit_match.html'
     success_url = reverse_lazy('search_match')
+
+
+class AddSeasonView(PermissionRequiredMixin, CreateView):
+    permission_required = 'footballscore_app.add_season'
+    form_class = SeasonForm
+    template_name = 'add_season.html'
+    success_url = reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({'objects': Season.objects.all()})
+        return context
+
+
+class EditSeasonView(PermissionRequiredMixin, UpdateView):
+    permission_required = 'footballscore_app.change_season'
+    model = Season
+    fields = "__all__"
+    template_name = 'edit_season.html'
+    success_url = reverse_lazy('add_season')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({'objects': Season.objects.all()})
+        return context
+
+class DeleteSeasonView(PermissionRequiredMixin, DeleteView):
+    permission_required = 'footballscore_app.delete_season'
+    model = Season
+    template_name = 'delete_season.html'
+    success_url = reverse_lazy('add_season')

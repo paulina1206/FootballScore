@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron">
+
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <h3>Add season:</h3>
+        {{ form.as_p }}
+        <p><input class="btn btn-dark btn-lg" type="submit" value="Add"></p>
+    </form>
+<br>
+
+<h5>List of season:</h5>
+    {% include 'object_list_season.html' with objects_list=objects %}
+</div>
+{% endblock %}

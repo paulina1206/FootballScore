@@ -36,6 +36,9 @@ urlpatterns = [
     path('search_match/', views.SearchMatchView.as_view(), name="search_match"),
     path('delete_match/<int:pk>/', views.DeleteMatchView.as_view(), name="delete_match"),
     path('edit_match/<int:pk>/', views.EditMatchView.as_view(), name="edit_match"),
+    path('add_season/', views.AddSeasonView.as_view(), name="add_season"),
+    path('edit_season/<int:pk>/', views.EditSeasonView.as_view(), name="edit_season"),
+    path('delete_season/<int:pk>/', views.DeleteSeasonView.as_view(), name="delete_season"),
 
 ] + static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)
 

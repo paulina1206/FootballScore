@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import NON_FIELD_ERRORS
 
-from footballscore_app.models import Match, Team, League
+from footballscore_app.models import Match, Team, League, Season
 
 
 class LeagueForm(forms.ModelForm):
@@ -29,6 +29,7 @@ class TeamForm(forms.ModelForm):
             'played_in_season': forms.CheckboxSelectMultiple
         }
 
+
 class MatchForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super().clean()
@@ -41,6 +42,12 @@ class MatchForm(forms.ModelForm):
 
     class Meta:
         model = Match
+        fields = "__all__"
+
+
+class SeasonForm(forms.ModelForm):
+    class Meta:
+        model = Season
         fields = "__all__"
 
 

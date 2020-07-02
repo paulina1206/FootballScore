@@ -40,6 +40,9 @@ class Season(models.Model):
     def __str__(self):
         return f'{self.season}, {self.league}'
 
+    def get_detail_url(self):
+        return f"/footballscore/edit_season/{self.id}"
+
 
 class Team(models.Model):
     name = models.CharField(max_length=256)

@@ -62,6 +62,10 @@
                         match</a>
                 </div>
             </li>
+    {% if perms.footballscore_app.add_season %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'add_season' %}">Add season</a>
+            </li>{% endif %}
 
 
             {% if user.is_authenticated %}
