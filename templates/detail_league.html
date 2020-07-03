@@ -21,7 +21,7 @@
                 </tr>
                 </thead>
                 {% for team in teams %}
-                    {% for t in team.teamseason_set.all|dictsort:"points" %}
+                    {% for t in team.teamseason_set.all|dictsort:'points'%}
                         {% if t.season == season %}
                             <tbody style="width:100%">
                             <tr class="table-success">

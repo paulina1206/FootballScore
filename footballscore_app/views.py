@@ -1,3 +1,5 @@
+import operator
+
 from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.paginator import Paginator
 from django.db.models import Q
@@ -83,7 +85,7 @@ class DetailLeagueView(View):
         paginator = Paginator(season, 1)
         page = request.GET.get('page')
         seasons = paginator.get_page(page)
-        teamss = Team.objects.filter(played_in_season__league=league)
+        teamss = Team.objects.filter(played_in_season__league=league).order_by('-teamseason__points')
         teams = []
         for team in teamss:
             if team not in teams:
