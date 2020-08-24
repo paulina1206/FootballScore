@@ -114,4 +114,13 @@ Description of the meaning of individual tables and columns:
 -date: date of the meeting
 
 **Landing page**
-![landing](https://drive.google.com/file/d/1N1enc19__fXZn3dyz1SxW8c4-Yxz3eng/view?usp=sharing)
+![landing](https://drive.google.com/uc?export=view&id=1N1enc19__fXZn3dyz1SxW8c4-Yxz3eng)
+
+**Search league**
+![search](https://drive.google.com/uc?export=view&id=1M_RMznwSup9gV529W2gIFhzrp537PE-M)
+
+**Detail league**
+![detail](https://drive.google.com/uc?export=view&id=18ynyTSN9LfUjOP1YGx_WBCBEC9QViV1c)
+
+**Form**
+![form](https://drive.google.com/uc?export=view&id=1ff-WQOg9ZEs3VTh4dAtVRKNwnrCPI0bO)
