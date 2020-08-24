@@ -101,7 +101,7 @@ Description of the meaning of individual tables and columns:
 -losses: team losses in season
 
 
-**match:** table containing information about matches
+**match:** model containing information about matches
 
 -team_home: host team - ForeignKey(TeamSeason)
 
@@ -112,3 +112,6 @@ Description of the meaning of individual tables and columns:
 -score_away: away team goals
 
 -date: date of the meeting
+
+**Landing page**
+![landing](https://drive.google.com/file/d/1N1enc19__fXZn3dyz1SxW8c4-Yxz3eng/view?usp=sharing)
